@@ -28,7 +28,7 @@ namespace Lms.Infrastructure.Persistence.Configurations
             
             builder.HasOne<Course>()
                 .WithMany()
-                .HasForeignKey(x => x.UserId)
+                .HasForeignKey(x => x.CourseId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
