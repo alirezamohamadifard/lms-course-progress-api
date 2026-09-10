@@ -37,5 +37,13 @@ namespace Lms.Api.Controllers
             ? NotFound()
             : Ok(course);
         }
+
+        [HttpPost("{id:guid}/publish")]
+        public async Task<ActionResult<CourseDto>> Publish(Guid id, CancellationToken cancellationToken)
+        {
+            var course = await _courseService.PublishAsync(id, cancellationToken);
+
+            return Ok(course);
+        }
     }
 }

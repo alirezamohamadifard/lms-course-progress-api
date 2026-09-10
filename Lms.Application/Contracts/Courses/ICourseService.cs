@@ -16,6 +16,8 @@ namespace Lms.Application.Contracts.Courses
         Task<CourseDto?> GetByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default);
+
+        Task<CourseDto> PublishAsync(Guid id, CancellationToken cancellationToken = default);
     }
 }
 

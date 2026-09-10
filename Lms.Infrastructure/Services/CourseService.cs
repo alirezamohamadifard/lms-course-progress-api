@@ -60,5 +60,25 @@ namespace Lms.Infrastructure.Services
                 x.Lessons.Count))
             .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task<CourseDto> PublishAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var course = await _dbContext.Courses.Include(x => x.Lessons).SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+            if (course is null)
+                throw new KeyNotFoundException("Course was not found");
+
+            course.Publish();
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return new CourseDto (
+                course.Id,
+                course.Title,
+                course.Description,
+                course.IsPublished,
+                course.CreatedAtUtc,
+                course.Lessons.Count);
+        }
     }
 }
