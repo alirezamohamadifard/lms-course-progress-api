@@ -7,5 +7,5 @@ namespace Lms.Application.Contracts.Courses
         string? Description,
         bool IsPublished,
         DateTime CreatedAtUtc,
-        int LessonCounr);
+        int LessonCount);
 }

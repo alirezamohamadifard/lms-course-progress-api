@@ -1,5 +1,6 @@
-
+using Lms.Application.Contracts.Courses;
 using Lms.Infrastructure.Persistence;
+using Lms.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ namespace Lms.Infrastructure
 
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+            services.AddScoped<ICourseService, CourseService>();
 
             return services;
         }
