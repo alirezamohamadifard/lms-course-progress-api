@@ -19,19 +19,9 @@ namespace Lms.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<LessonDto>> Create(Guid courseId, CreateLessonRequest request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var lesson = await _lessonService.CreateAsync(courseId, request, cancellationToken);
+            var lesson = await _lessonService.CreateAsync(courseId, request, cancellationToken);
 
-                return CreatedAtAction(nameof(GetByCourseId), new { courseId }, lesson);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound(new
-                {
-                    message = "Course was not found."
-                });
-            }
+            return CreatedAtAction(nameof(GetByCourseId), new { courseId }, lesson);
         }
 
         [HttpGet]
