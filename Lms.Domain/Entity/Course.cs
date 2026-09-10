@@ -29,7 +29,7 @@ namespace Lms.Domain.Entity
             Title = title.Trim();
             Description = description?.Trim();
         }
-        private void AddLesson(string title)
+        public void AddLesson(string title)
         {
             var nextorder = _lessons.Count + 1;
             var lesson  =  new Lesson(Id, title, nextorder);

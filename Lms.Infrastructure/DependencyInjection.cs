@@ -1,4 +1,5 @@
 using Lms.Application.Contracts.Courses;
+using Lms.Application.Contracts.Lessons;
 using Lms.Infrastructure.Persistence;
 using Lms.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace Lms.Infrastructure
             options.UseSqlServer(connectionString));
 
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ILessonService, LessonService>();
 
             return services;
         }
