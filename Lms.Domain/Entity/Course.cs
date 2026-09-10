@@ -12,7 +12,7 @@ namespace Lms.Domain.Entity
         public string Title { get; private set; } = null!;
         public string? Description { get; private set; }
         public bool IsPublished { get; private set; }
-        public ICollection<Lesson> Lessons => _lessons.AsReadOnly();
+        public IReadOnlyCollection<Lesson> Lessons => _lessons;
         private Course()
         {
         }

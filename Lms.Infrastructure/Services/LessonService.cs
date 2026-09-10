@@ -28,9 +28,12 @@ namespace Lms.Infrastructure.Services
 
             course.AddLesson(request.Title);
 
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            var lesson = course.Lessons
+                .MaxBy(x => x.Order)!;
 
-            var lesson = course.Lessons.MaxBy(z =>  z.Order)!;
+            _dbContext.Lessons.Add(lesson);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return new LessonDto(
             lesson.Id,

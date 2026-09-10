@@ -17,6 +17,10 @@ namespace Lms.Infrastructure.Persistence.Configurations
                 .HasMaxLength(2000);
             builder.Property(x => x.CreatedAtUtc)
                 .IsRequired();
+
+
+            builder.Navigation(x => x.Lessons)
+                 .UsePropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }
