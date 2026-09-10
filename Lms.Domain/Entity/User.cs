@@ -10,12 +10,12 @@ namespace Lms.Domain.Entity
     {
         public string FullName { get; private set; } = null!;
         public string Email { get; private set; } = null!;
-        public string HashPassword { get; private set; } = null!;
+        public string PasswordHash { get; private set; } = null!;
         public UserRole Role { get; private set; }
         private User()
         {
         }
-        public User(string fullName, string email, string hashPassword, UserRole role)
+        public User(string fullName, string email, string passwordHash, UserRole role)
         {
             if (string.IsNullOrWhiteSpace(fullName))
                 throw new ArgumentException("Full name is required.", nameof(fullName));
@@ -24,7 +24,7 @@ namespace Lms.Domain.Entity
                 throw new ArgumentException("Email is required.", nameof(email));
             FullName = fullName;
             Email = email;
-            HashPassword = hashPassword;
+            PasswordHash = passwordHash;
             Role = role;
             CreatedAtUtc = DateTime.UtcNow;
         }
