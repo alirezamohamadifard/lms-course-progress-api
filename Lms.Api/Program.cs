@@ -10,6 +10,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration);
 
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
