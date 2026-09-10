@@ -20,6 +20,7 @@ namespace Lms.Domain.Entity
             CourseId = courseId;
             Title = title;
             Order = order;
+            CreatedAtUtc = DateTime.UtcNow;
         }
     }
 }
