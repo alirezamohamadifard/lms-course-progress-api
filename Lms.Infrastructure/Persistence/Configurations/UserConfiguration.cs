@@ -16,11 +16,19 @@ namespace Lms.Infrastructure.Persistence.Configurations
             builder.Property(x => x.FullName)
                 .HasMaxLength(150)
                 .IsRequired();
+
             builder.Property(x => x.Email)
                 .HasMaxLength(256)
                 .IsRequired();
+
             builder.Property(x => x.PasswordHash)
                 .IsRequired();
+
+            builder.Property(x => x.Role)
+           .HasConversion<string>()
+           .HasMaxLength(20)
+           .IsRequired();
+
             builder.HasIndex(x => x.Email)
                 .IsUnique();
         }

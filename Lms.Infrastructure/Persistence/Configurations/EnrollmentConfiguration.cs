@@ -12,13 +12,20 @@ namespace Lms.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Enrollment> builder)
         {
             builder.ToTable("Enrollments");
+
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.CreatedAtUtc)
+                .IsRequired();
+            
             builder.HasIndex(x => new { x.UserId, x.CourseId })
                 .IsUnique();
+            
             builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+            
             builder.HasOne<Course>()
                 .WithMany()
                 .HasForeignKey(x => x.UserId)
