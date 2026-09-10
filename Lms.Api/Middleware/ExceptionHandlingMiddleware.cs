@@ -10,7 +10,7 @@
             _logger = logger;
         }
 
-        private async Task InvokeAsync(HttpContext context) 
+        public async Task InvokeAsync(HttpContext context) 
         {
             try
             {
