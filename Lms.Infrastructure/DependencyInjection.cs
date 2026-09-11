@@ -1,5 +1,7 @@
+using Lms.Application.Contracts.Auth;
 using Lms.Application.Contracts.Courses;
 using Lms.Application.Contracts.Lessons;
+using Lms.Infrastructure.Authentication;
 using Lms.Infrastructure.Persistence;
 using Lms.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,9 @@ namespace Lms.Infrastructure
 
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ILessonService, LessonService>();
+            services.AddSingleton<PasswordHasher>();
+            services.AddSingleton<JwtTokenGenerator>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

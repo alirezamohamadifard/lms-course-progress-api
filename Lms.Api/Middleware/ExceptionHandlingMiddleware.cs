@@ -30,6 +30,20 @@
                     StatusCodes.Status400BadRequest,
                     exception.Message);
             }
+            catch (UnauthorizedAccessException exception)
+            {
+                await WriteErrorAsync(
+                    context,
+                    StatusCodes.Status401Unauthorized,
+                    exception.Message);
+            }
+            catch (InvalidOperationException exception)
+            {
+                await WriteErrorAsync(
+                    context,
+                    StatusCodes.Status409Conflict,
+                    exception.Message);
+            }
             catch (Exception exception) 
             {
                 _logger.LogError(exception, "An Unexpected Error Occured");
