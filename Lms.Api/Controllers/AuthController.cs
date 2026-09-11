@@ -17,7 +17,7 @@ namespace Lms.Api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AuthResponse>> Rigister(RegisterRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<AuthResponse>> Register(RegisterRequest request, CancellationToken cancellationToken)
         {
             var response = await _authService.RegisterAsync(request, cancellationToken);
             return StatusCode(StatusCodes.Status201Created, response);
