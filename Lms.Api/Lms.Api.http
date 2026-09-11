@@ -1,6 +1,47 @@
-@Lms.Api_HostAddress = http://localhost:5048
+@apiUrl = https://localhost:7238
+@courseId = PASTE_PUBLISHED_COURSE_ID_HERE
+@token = PASTE_YOUR_JWT_TOKEN_HERE
 
-GET {{Lms.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Register
+POST {{apiUrl}}/api/auth/register
+Content-Type: application/json
 
-###
+{
+  "fullName": "Example Student",
+  "email": "student@example.com",
+  "password": "ChangeMe123!"
+}
+
+### Login
+POST {{apiUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@example.com",
+  "password": "ChangeMe123!"
+}
+
+### Current user
+GET {{apiUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Get courses
+GET {{apiUrl}}/api/courses
+
+### Create course — Admin only
+POST {{apiUrl}}/api/courses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Clean Architecture in .NET",
+  "description": "A practical course about maintainable backend systems."
+}
+
+### Enroll current user
+POST {{apiUrl}}/api/courses/{{courseId}}/enrollments
+Authorization: Bearer {{token}}
+
+### Get my enrollments
+GET {{apiUrl}}/api/me/enrollments
+Authorization: Bearer {{token}}
