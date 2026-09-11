@@ -1,5 +1,6 @@
 using Lms.Application.Contracts.Auth;
 using Lms.Application.Contracts.Courses;
+using Lms.Application.Contracts.Enrollments;
 using Lms.Application.Contracts.Lessons;
 using Lms.Infrastructure.Authentication;
 using Lms.Infrastructure.Persistence;
@@ -25,6 +26,7 @@ namespace Lms.Infrastructure
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<JwtTokenGenerator>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IEnrollmentService, EnrollmentService>();
 
             return services;
         }
