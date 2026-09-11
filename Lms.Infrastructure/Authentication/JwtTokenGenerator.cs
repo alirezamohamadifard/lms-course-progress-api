@@ -36,6 +36,7 @@ namespace Lms.Infrastructure.Authentication
                 new(JwtRegisteredClaimNames.Email, user.Email),
                 new(ClaimTypes.Name, user.FullName),
                 new(ClaimTypes.Role, user.Role.ToString()),
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
