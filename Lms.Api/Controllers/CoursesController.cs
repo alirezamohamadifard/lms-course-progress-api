@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Lms.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lms.Api.Controllers
 {
@@ -16,6 +18,7 @@ namespace Lms.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = nameof(UserRole.Admin))]
         public async Task<ActionResult<CourseDto>> CreateAsync(CreateCourseRequest request, CancellationToken cancellationToken)
         {
             var Course = await  _courseService.CreateAsync(request, cancellationToken);
@@ -39,6 +42,7 @@ namespace Lms.Api.Controllers
         }
 
         [HttpPost("{id:guid}/publish")]
+        [Authorize(Roles = nameof(UserRole.Admin))]
         public async Task<ActionResult<CourseDto>> Publish(Guid id, CancellationToken cancellationToken)
         {
             var course = await _courseService.PublishAsync(id, cancellationToken);

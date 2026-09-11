@@ -1,4 +1,6 @@
 ﻿using Lms.Application.Contracts.Lessons;
+using Lms.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
@@ -17,6 +19,7 @@ namespace Lms.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = nameof(UserRole.Admin))]
         public async Task<ActionResult<LessonDto>> Create(Guid courseId, CreateLessonRequest request, CancellationToken cancellationToken)
         {
             var lesson = await _lessonService.CreateAsync(courseId, request, cancellationToken);
